@@ -39,3 +39,49 @@ block content
 
     //-third part
     div(class="lg:w-1/4")
+      //-price range
+      div(class="range")
+        div(class="range-slider")
+          span(class="range-selected")
+        div(class="range-input")
+          input(class="min" type="range" min="0" max="1000" value="0" step="1")
+          input(class="max" type="range" min="0" max="1000" value="0" step="1")
+        div(class="range-price")
+          label(for="min") Min
+          input(type="number" name="min" value="0")
+          label(for="max") Max
+          input(type="number" name="max" value="1000")
+        //- checkbox
+      div(class="checkbox")
+        input(value="Ananas" type="checkbox" id="a")
+        label(for="a") Ananas
+      div(class="checkbox")
+        input(value="Banán" type="checkbox" id="b")
+        label(for="b") Banán
+      div(class="checkbox")
+        button(onclick="myFunction()") Klikni
+      p(id="output")
+
+
+
+
+
+      //-div(class="wrapper")
+        div(class="price-input")
+          div(class="field")
+            span(for="input-min") Min
+            input(type="number" class="input-min" value="0")
+          div(class="field")
+            span(for="input-max") Max
+            input(type="number" class="input-max" value="6000")
+          div(class="slider")
+            div(class="progress")
+          div(class="range-input")
+            input(type="range" class="range-min" min="0" max="6000" value="0")
+            input(type="range" class="range-max" min="0" max="6000" value="6000")
+
+      //-div(data-role="rangeslider")
+        label(for='range-1a') Price Range:
+        input(name="range-1a" id="range-1a" min="0" max="6000" value="0" type="range")
+        label(for='range-1b') Price Range:
+        input(name="range-1b" id="range-1b" min="0" max="6000" value="6000" type="range") 
