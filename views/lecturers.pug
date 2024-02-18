@@ -25,46 +25,57 @@ block content
     //- second part
     div(class="w-full lg:w-2/4 flex mt-20")
       each n in lector
-        a(href=n.uuid, class="w-full flex items-center") 
-          div(class="flex-initial w-1/2")
-            img(src=n.picture_url, alt="", class="rounded-full")
-          div(class="flex-initial w-1/2")
-            p= n.claim
-            p= n.price_per_hour
-            p= n.location
-            p= n.tags[0].name
-            p= n.tags[1].name
+        p=n.claim
+        
+        //- a(href=n.uuid, class="w-full flex items-center") 
+        //-   div(class="flex-initial w-1/2")
+        //-     img(src=n.picture_url, alt="", class="rounded-full")
+        //-   div(class="flex-initial w-1/2")
+        //-     p= n.claim
+        //-     p= n.price_per_hour
+        //-     p= n.location
+        //-     p= n.tags[0].name
+        //-     p= n.tags[1].name
 
 
 
     //-third part
     div(class="lg:w-1/4")
       //-price range
-      div(class="range")
-        div(class="range-slider")
-          span(class="range-selected")
-        div(class="range-input")
-          input(class="min" type="range" min="0" max="1000" value="0" step="1")
-          input(class="max" type="range" min="0" max="1000" value="0" step="1")
-        div(class="range-price")
-          label(for="min") Min
-          input(type="number" name="min" value="0")
-          label(for="max") Max
-          input(type="number" name="max" value="1000")
+      .wrapper
+        .price-input
+          .field
+            span Min
+            input.input-min(id="inputMin" type="number", value="2500" onchange="onchangevalues2()")
+          .separator -
+          .field
+            span Max
+            input.input-max(id="inputMax" type="number", value="7500" onchange="onchangevalues2()")
+        .slider
+          .progress
+        .range-input
+          input.range-min(id="rangeMin" type="range", min="0", max="10000", value="2500", step="100" onchange="onchangevalues1()")
+          input.range-max(id="rangeMax" type="range", min="0", max="10000", value="7500", step="100" onchange="onchangevalues1()")
+
+
         //- checkbox
-      div(class="checkbox")
-        input(value="Ananas" type="checkbox" id="a")
-        label(for="a") Ananas
-      div(class="checkbox")
-        input(value="Banán" type="checkbox" id="b")
-        label(for="b") Banán
-      div(class="checkbox")
-        button(onclick="myFunction()") Klikni
-      p(id="output")
-
-
-
-
+      .container
+        h3.title Choose the countries you love
+        .box
+          input.checkbox(type="checkbox", id="japan", value="Japan")
+          label(for="japan") Japan
+        .box
+          input.checkbox(type="checkbox", id="italy", value="Italy")
+          label(for="italy") Italy
+        .box
+          input.checkbox(type="checkbox", id="canada", value="Canada")
+          label(for="canada") Canada
+        .box
+          input.checkbox(type="checkbox", id="iceland", value="Iceland")
+          label(for="iceland") Iceland
+        .print
+          p.text You Have Selected: 
+            span.value
 
       //-div(class="wrapper")
         div(class="price-input")

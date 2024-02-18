@@ -235,57 +235,7 @@ router.get('/api/lecturers', (req, res) => {
       res.status(500).send('An error occurred while getting all lecturer-tags: ' + err);
       return;
     }
-    let unikatniData = rows.reduce((acc, objekt) => {
-      // Zjistíme, zda už máme objekt s daným uuid v akumulátoru
-      let existujiciObjekt = acc.find(item => item.lecturer_uuid === objekt.lecturer_uuid);
-    
-      // Pokud nemáme, přidáme objekt do akumulátoru
-      if (!existujiciObjekt) {
-        acc.push(objekt);
-      }
-    
-      return acc;
-    }, []);
-    let filtrovanaPole;
-    for(let i=0;i<unikatniData.length; i++){
-      let lecturerUUID = unikatniData[i].lecturer_uuid
-      // console.log(lecturerUUID)
-
-        filtrovanaPole = rows.filter(function(value) {
-          if (value.lecturer_uuid === lecturerUUID) {
-            return true;
-          } else {
-            return false;
-          }
-        }).map(function(value) {
-          return {uuid: value.tag_uuid, name: value.tag };
-          // return { lecturer_uuid:value.lecturer_uuid, uuid: value.tag_uuid, name: value.tag };
-        });
-        // console.log(filtrovanaPole)
-        let telNumbers = unikatniData[i].phone_number.split(",")
-        let Emils = unikatniData[i].email.split(",")
-      LecturerFull.push(
-        {
-          uuid:unikatniData[i].lecturer_uuid,
-          title_before:unikatniData[i].title_before,
-          first_name:unikatniData[i].first_name,
-          middle_name:unikatniData[i].middle_name,
-          last_name:unikatniData[i].last_name,
-          title_after:unikatniData[i].title_after,
-          picture_url:unikatniData[i].picture_url,
-          location:unikatniData[i].location,
-          claim:unikatniData[i].claim,
-          bio:unikatniData[i].bio,
-          tags:filtrovanaPole,
-          price_per_hour:unikatniData[i].price_per_hour,
-          contact:{
-            telephone_numbers:telNumbers,
-            emails:Emils
-          }
-        }
-      )
-    }
-    res.render('lecturers', { lector: LecturerFull });
+    res.render('lecturers', { lector:rows });
     // res.status(200).send(LecturerFull)
   });
 });
