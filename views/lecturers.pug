@@ -38,51 +38,36 @@ block content
       //- form get
       //-third part 
     div(class="lg:w-1/4 block  w-full")
-      //-price range
-      form(action="/", method="GET" class="lg:text-lg xl:text-xl")
-        .wrapper
-          .slider
-            .progress
-          .range-input
-            input.range-min(id="rangeMin" type="range", min="0", max="10000", value="2500", step="100" onchange="onchangevalues1()")
-            input.range-max(id="rangeMax" type="range", min="0", max="10000", value="7500", step="100" onchange="onchangevalues1()")
-          .price-input
-            .field
-              span 
-              input.input-min(id="inputMin" name="inputMin" type="number", value="2500" onchange="onchangevalues2()")
-            .separator až
-            .field
-              input.input-max(id="inputMax" name="inputMax" type="number", value="7500" onchange="onchangevalues2()")
-              span(class="pl-0.5") Kč
+      div(class="border")
+        //-price range
+        form(action="/", method="GET" class="lg:text-lg xl:text-xl")
+          .wrapper
+            .slider
+              .progress
+            .range-input
+              input.range-min(id="rangeMin" type="range", min="0", max="10000", value="2500", step="100" onchange="onchangevalues1()")
+              input.range-max(id="rangeMax" type="range", min="0", max="10000", value="7500", step="100" onchange="onchangevalues1()")
+            .price-input
+              .field
+                span 
+                input.input-min(id="inputMin" name="inputMin" type="number", value="2500" onchange="onchangevalues2()")
+              .separator až
+              .field
+                input.input-max(id="inputMax" name="inputMax" type="number", value="7500" onchange="onchangevalues2()")
+                span() Kč
 
           //- checkbox
         div(class="container max-h-[50vh] overflow-y-auto")
-          h3.title Zaměření
+          h3.title Zvol si tag/tagy
           each n in tagArray
             .box
               input.checkbox(type="checkbox", id=""+n, value=""+n)
               label(for=""+n)= n
           .print
-          p.text You Have Selected: 
+          p.text Vybral jsi: 
           output(class="value" id="tags" name="tags")
 
-        div(class="")
+        div(class="city container")
           label(for="city") Město 
           input(type="text", name="city" id="city")
-        button(type="submit") Odeslat
-        
-        //- .box
-        //-   input.checkbox(type="checkbox", id="japan", value="Japan")
-        //-   label(for="japan") Japan
-        //- .box
-        //-   input.checkbox(type="checkbox", id="italy", value="Italy")
-        //-   label(for="italy") Italy
-        //- .box
-        //-   input.checkbox(type="checkbox", id="canada", value="Canada")
-        //-   label(for="canada") Canada
-        //- .box
-        //-   input.checkbox(type="checkbox", id="iceland", value="Iceland")
-        //-   label(for="iceland") Iceland
-        //- .print
-        //-   p.text You Have Selected: 
-        //-     span.value
+        button(type="submit" class="lg:bg-[#74C7D3] lg:rounded-lg lg:my-3 lg:w-28 lg:mx-20") Odeslat
