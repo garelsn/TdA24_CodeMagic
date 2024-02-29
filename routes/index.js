@@ -952,6 +952,13 @@ router.get('/lecturer',(req, res)=>{
    });
 })
 
+router.get('/onas',(req, res)=>{
+  res.render('about_us')
+})
+router.get('/zasady',(req, res)=>{
+  res.render('privacy_policy')
+})
+
 function checkAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
     return next()
