@@ -838,7 +838,7 @@
 //                 r.hours = r.hours.split(",");
 //             }
 //             if (!Array.isArray(r.hours)) {
-//               r.hours = [r.hours];
+//               r.Fhours = [r.hours];
 //             }
           
 //             r.hours.forEach(hour => {
