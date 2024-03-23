@@ -5,6 +5,14 @@ const bcrypt = require('bcrypt');
 const { v4: uuidv4 } = require('uuid');
 const sqlite3 = require('sqlite3').verbose();
 const db = new sqlite3.Database("./data/db2.sqlite");
+const OpenAI = require("openai");
+const openai = new OpenAI({
+    apiKey: process.env.OPENAI_API_KEY
+
+  })
+
+  
+
 
 // Vytvoření tabulky activity
 db.run(`CREATE TABLE IF NOT EXISTS activity (
@@ -54,22 +62,7 @@ router.get('/login', checkNotAuthenticated, (req, res) => {
     res.render('login');
 });
 router.get('/', (req, res) => {
-    const getLecturerTag =  `SELECT * FROM activity`;
-db.all(getLecturerTag, (err, row)=>{
 
-    row.forEach((element, index) => {
-        row[index].objectives= JSON.parse(element.objectives)
-        row[index].edLevel= JSON.parse(element.edLevel)
-        row[index].tools= JSON.parse(element.tools)
-        row[index].homePreparation= JSON.parse(element.homePreparation)
-        row[index].instructions= JSON.parse(element.instructions)
-        row[index].agenda= JSON.parse(element.agenda)
-        row[index].links= JSON.parse(element.links)
-        row[index].gallery= JSON.parse(element.gallery)
-    });
-    console.log(row[0].gallery[0].images)
-    res.render('amos', {activitys: row});
-})
 });
 
 router.post('/login', checkNotAuthenticated, passport.authenticate('local', {
@@ -144,5 +137,9 @@ router.delete('/logout', (req, res, next) => {
     res.redirect('/login');
   });
 })
+
+
+
+
 
 module.exports = router;
