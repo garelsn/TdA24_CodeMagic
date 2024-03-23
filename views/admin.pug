@@ -1,0 +1,48 @@
+extends layout
+
+block content
+  div(class="sticky")      
+    form(action="/logout?_method=DELETE" method="POST")
+        button(type="submit" class="bg-[#74C7D3] h-9 mt-4 w-[50%] rounded-lg text-xl sm:mx-auto block mx-auto mb-6") Odhlásit se 
+    each value in activitys
+        div(class="bg-[#74C7D3] grid grid-cols-2 text-black w-full p-5 sm:w-11/12 mx-auto")
+            div()
+                h2= value.activityName
+                p= value.description
+                ul
+                each v in value.objectives
+                    li= v
+                p= value.classStructure
+                p= "Minimalní délka: "+value.lengthMin
+                p= "Maximalní délka: "+value.lengthMax
+                ul
+                each v in value.edLevel
+                    li= v
+            div()
+                each v in value.tools
+                    p= v
+                each v in value.homePreparation
+                    p= v.title
+                    p= v.warn
+                    p= v.note
+                each v in value.instructions
+                    p= v.title
+                    p= v.warn
+                    p= v.note
+                each v in value.agenda
+                    p= v.duration
+                    p= v.title
+                    p= v.description
+                each v in value.links
+                    a(href=v.url)= v.title 
+            each v in value.gallery
+                div(class="w-full block")
+                    each img in v.images
+                        img(src=img.highRes, alt=v.title class="w-1/3")
+                    
+            form(action="" method="post")
+                h1= "DSF"
+            
+
+                
+                
