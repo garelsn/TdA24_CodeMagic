@@ -44,6 +44,33 @@ block content
 
             div(class="sm:mt-10 mt-5")
                 h1(class="text-5xl text-center sm:text-left text-white") Seznam aktivit
+            each value in activitys
+                div(class=" mt-6 float-left bg-white w-full p-5 sm:w-11/12 list-none border-b-4 border-[#979897] rounded mb-16")
+                    div(class="grid grid-cols-2")
+                        div(class="w-full mt-5")
+                            p(class="font-bold") Název:
+                                p(class="ml-[15%] text-2xl")= value.activityName
+                        div(class="w-full")
+                            div(class="grid grid-cols-2")
+                                div(class="w-full my-auto")
+                                    each v in value.agenda
+                                        img(src="../../../img/clock_icon.png", alt="Hodiny" class="w-1/4 ml-5 mt-4")
+                                        p(class="mt-2")=`${v.duration} minut`
+                                div(class="w-full")
+                                    each v in value.edLevel
+                                                if v === "primarySchool" || v === "Školka"
+                                                    img(src="../../../img/children_icon.png", alt="Děti ve školce" class="w-1/4 mt-4")
+                                                    li(class="mt-2")=v
+                                                else if v === "secondarySchool" || v === "Základní škola"
+                                                    img(src="../../../img/children2_icon.png", alt="Děti na základní škole" class="w-1/4 mt-4")
+                                                    li(class="mt-2")=v
+                                                else if v === "highSchool" || v === "Střední škola"
+                                                    img(src="../../../img/children3_icon.png", alt="Děti na střední škole" class="w-1/4 mt-4")
+                                                    li(class="mt-2")=v
+                            
+                    p(class="font-bold mt-3") Popisek: 
+                        p(class="mt-2")= value.description
+                    
 
         section(class="w-full mx-auto mt-14 lg:grid-cols-1 lg:gap-1 lg:flex lg:flex-col lg:m-0 lg:p-5 border-l-4 border-l-white hidden sm:visible")  
             div(class="mx-auto mt-[10%]")

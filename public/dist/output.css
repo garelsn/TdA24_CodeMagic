@@ -1049,6 +1049,22 @@ video {
   margin-bottom: 4rem;
 }
 
+.ml-\[25\%\] {
+  margin-left: 25%;
+}
+
+.ml-1 {
+  margin-left: 0.25rem;
+}
+
+.ml-\[15\%\] {
+  margin-left: 15%;
+}
+
+.mt-auto {
+  margin-top: auto;
+}
+
 .box-border {
   box-sizing: border-box;
 }
@@ -1326,6 +1342,10 @@ video {
   width: 25%;
 }
 
+.w-1\/12 {
+  width: 8.333333%;
+}
+
 .max-w-7xl {
   max-width: 80rem;
 }
@@ -1386,6 +1406,10 @@ video {
 
 .max-w-screen-xl {
   max-width: 1280px;
+}
+
+.max-w-screen-sm {
+  max-width: 640px;
 }
 
 .flex-none {
