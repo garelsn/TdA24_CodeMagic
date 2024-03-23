@@ -1,0 +1,62 @@
+extends layout
+
+block content
+  div(class="sticky image")      
+    form(action="/logout?_method=DELETE" method="POST")
+        button(type="submit" class="bg-[#74C7D3] h-9 mt-4 w-[50%] rounded-lg text-xl sm:mx-auto block mx-auto mb-6 ") Odhlásit se 
+    each value in activitys
+        div(class="bg-white grid grid-cols-2 w-full p-5 sm:w-11/12 mx-auto list-none border-b-4 border-r-4 border-[#979897] rounded mb-16")
+            div(class="mx-auto  mt-6")
+                h2(class="font-bold")="Název: "      
+                p(class="ml-[40%] text-2xl")= value.activityName
+                p(class="font-bold")= "Popisek: "
+                p(class="ml-[40px]")= value.description
+                ul
+                p(class="font-bold")="Cíl projektu: "
+                each v in value.objectives
+                    li(class="ml-[40px]")=v
+                p(class="font-bold")= "Rozdělení třídy: "
+                p(class="ml-[40px]")=value.classStructure
+                p(class="font-bold")= "Minimalní délka: "
+                p(class="ml-[40px]")=value.lengthMin+" min"
+                p(class="font-bold")= "Maximalní délka: "
+                p(class="ml-[40px]")=value.lengthMax+" min"
+                ul
+                p(class="font-bold")="Pro: "
+                each v in value.edLevel
+                    li(class="ml-[40px]")=v
+            div(class="mx-auto  mt-6")
+                p(class="font-bold")="Budete potřebovat: "
+                each v in value.tools
+                    p(class="ml-[40px]")=v
+                p(class="font-bold")="Domácí příprava: "
+                    each v in value.homePreparation
+                        p(class="ml-[40px]")= v.title
+                        p(class="ml-[40px]")= v.warn
+                        p(class="ml-[40px]")= v.note
+                p(class="font-bold")="Instrukce: "
+                each v in value.instructions
+                    p(class="ml-[40px]")= v.title
+                    p(class="ml-[40px]")= v.warn
+                    p(class="ml-[40px]")= v.note
+                p(class="font-bold")="Program: "
+                each v in value.agenda
+                    p(class="ml-[40px]")= "Délka programu: "+v.duration+" min"
+                    p(class="ml-[40px]")= v.title
+                    p(class="ml-[40px]")= v.description
+                p(class="font-bold")="Pořadatel: "
+                each v in value.links
+                    a(href=v.url class="ml-[40px]")= v.title
+            div(class="col-span-2") 
+                p(class="font-bold text-center w-full my-8 text-lg")="Galerie"        
+                each v in value.gallery
+                    div(class="w-full block")
+                        each img in v.images
+                            img(src=img.highRes, alt=v.title class="w-1/5")
+            div(class="col-span-2 mt-7 mx-auto")
+                button(class="bg-[#39ed29] text-black font-bold py-2 px-4 border-b-4 border-[#216d2a] rounded mr-8") Publiknout 
+                button(class="bg-[#ff2e2e] text-black font-bold py-2 px-4 border-b-4 border-[#8f0000] rounded") Smazat
+                        
+
+                
+                

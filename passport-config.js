@@ -1,32 +1,29 @@
-const LocalStrategy = require('passport-local').Strategy
-const bcrypt = require('bcrypt')
+const LocalStrategy = require('passport-local').Strategy;
+const bcrypt = require('bcrypt');
 
-function initialize(passport, getUserByName, getUserById) {
+function initialize(passport, getUserByName) {
   const authenticateUser = async (name, password, done) => {
-    const user = getUserByName(name)
-    
+    const user = getUserByName(name);
     if (user == null) {
-      return done(null, false, { message: 'Uživatel s tímto jménem neexistuje' })
+      return done(null, false, { message: 'Nesprávné jméno.' });
     }
-    console.log("-------")
-    console.log(user)
+
     try {
       if (await bcrypt.compare(password, user.password)) {
-        return done(null, user)
+        return done(null, user);
       } else {
-        return done(null, false, { message: 'Špatné heslo' })
+        return done(null, false, { message: 'Nesprávné heslo.' });
       }
     } catch (e) {
-      return done(e)
+      return done(e);
     }
-
   }
 
-  passport.use(new LocalStrategy({ usernameField: 'name' }, authenticateUser))
-  passport.serializeUser((user, done) => done(null, user.lecturer_uuid))
-  passport.deserializeUser((id, done) => {
-    return done(null, getUserById(id))
-  })
+  passport.use(new LocalStrategy({ usernameField: 'name' }, authenticateUser));
+  passport.serializeUser((user, done) => done(null, user.name));
+  passport.deserializeUser((name, done) => {
+    return done(null, getUserByName(name));
+  });
 }
 
-module.exports = initialize
+module.exports = initialize;

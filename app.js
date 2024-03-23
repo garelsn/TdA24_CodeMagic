@@ -22,6 +22,7 @@ const db = new sqlite3.Database(path.join(__dirname, 'data','db.sqlite'));
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var amusRouter = require('./routes/amus');
 const flash = require('express-flash');
 const passport = require('passport');
 var bodyParser = require('body-parser')
@@ -91,9 +92,9 @@ app.use(session({
 app.use(passport.initialize())
 app.use(passport.session())
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
-
+// app.use('/', indexRouter);
+// app.use('/users', usersRouter);
+app.use('/', amusRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
@@ -107,7 +108,7 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.render('error2');
 });
 
 // creates the tourdeapp table in the databace
