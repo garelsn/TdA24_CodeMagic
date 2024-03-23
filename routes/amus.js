@@ -69,6 +69,7 @@ router.get('/addActivity', checkNotAuthenticated, (req, res) => {
     res.render('add_activity');
 });
 
+
 router.get('/activity', checkNotAuthenticated, (req, res) => {
     res.render('activity');
 });
