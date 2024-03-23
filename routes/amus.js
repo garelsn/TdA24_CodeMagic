@@ -87,6 +87,8 @@ router.post("/activity", (req, res) => {
         return res.status(599).json({message: "Error message"});
     }
 });
-
+router.get('/', (req, res) => {
+  res.render("amos.pug");
+})
 
 module.exports = router;
