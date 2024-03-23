@@ -65,6 +65,14 @@ router.get('/', (req, res) => {
 
 });
 
+router.get('/addActivity', checkNotAuthenticated, (req, res) => {
+    res.render('add_activity');
+});
+
+router.get('/activity', checkNotAuthenticated, (req, res) => {
+    res.render('activity');
+});
+
 router.post('/login', checkNotAuthenticated, passport.authenticate('local', {
     successRedirect: '/admin',
     failureRedirect: '/login',

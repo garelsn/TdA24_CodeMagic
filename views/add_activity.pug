@@ -1,0 +1,16 @@
+extends layout
+
+block content
+    main(class="grid col-auto lg:grid-cols-3 sm:h-screen image")
+        //-first part
+        section(class="w-full sm:w-[10vw]")
+            img(loading="lazy" src="../img/logo.png" alt="logo" class="w-[40%] lg:w-50 pt-8 pl-4 sm:w-56 sm:inline-block lg:block lg:px-5 float-left sm:float-none")
+        h1(class="font-extrabold text-white text-6xl mt-24") Přidání aktivity
+            form(action="/submit", method="POST")
+                label(for="activityName") Název:
+                input(type="text", id="activityName", name="activityName" class="rounded-md")
+                label(for="description") Popis:
+                textarea(id="description", name="description" class="rounded-md")
+                label(for="otherField") Další pole:
+                input(type="text", id="otherField", name="otherField" class="rounded-md")
+                button(class="bg-[#74C7D3] text-black font-bold py-2 px-4 border-b-4 border-[#2F7282] rounded mt-7") Odeslat

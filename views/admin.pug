@@ -1,7 +1,7 @@
 extends layout
 
 block content
-  div(class="sticky")      
+  div(class="sticky image")      
     form(action="/logout?_method=DELETE" method="POST")
         button(type="submit" class="bg-[#74C7D3] h-9 mt-4 w-[50%] rounded-lg text-xl sm:mx-auto block mx-auto mb-6 ") Odhlásit se 
     each value in activitys

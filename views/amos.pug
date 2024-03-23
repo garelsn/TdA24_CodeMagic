@@ -1,7 +1,7 @@
 extends layout
 
 block content
-    main(class="grid col-auto lg:grid-cols-4 sm:h-screen")
+    main(class="grid col-auto lg:grid-cols-4 sm:h-screen image")
         //-first part
         section(class="w-full sm:w-[10vw]")
             img(loading="lazy" src="../img/logo.png" alt="logo" class="w-[40%] lg:w-50 pt-8 pl-4 sm:w-56 sm:inline-block lg:block lg:px-5 float-left sm:float-none")
@@ -42,9 +42,9 @@ block content
                     input(type="submit", value="Vyhledat" class="text-white absolute end-2.5 bottom-2.5 font-medium rounded-lg text-sm px-4 py-2 bg-[#74C7D3]")
 
             div(class="sm:mt-10 mt-5")
-                h1(class="text-5xl text-center sm:text-left text-white") Seznam aktivit
+                h1(class="text-5xl text-center text-white") Seznam aktivit
             each value in activitys
-                div(class=" mt-6 float-left bg-white w-full p-5 sm:w-11/12 list-none border-b-4 border-[#979897] rounded mb-16")
+                a(class=" mt-6 float-left bg-white w-full p-5 sm:w-11/12 list-none border-b-4 border-[#979897] rounded mb-16" href="/activity")
                     div(class="grid grid-cols-2")
                         div(class="w-full mt-5")
                             p(class="font-bold") Název:
@@ -78,7 +78,7 @@ block content
                 h1(class="text-white w-[70%] my-auto mx-auto flex justify-center text-center mb-3") Máš svoji oblíbenou aktivitu? Poděl se s ní s ostatními
                 button(class="relative bg-[#74C7D3] py-2 px-4 border-b-4 border-[#2F7282] rounded flex items-center justify-center mx-auto my-auto")
                     img(src="../../../img/add_button.png", alt="Ikona přídání", class="w-1/6 ml-2")
-                    p(class="text-black font-bold ml-4") Přidat aktivitu
+                    a(class="text-black font-bold ml-4" href="/addActivity") Přidat aktivitu
 
 
     script.
