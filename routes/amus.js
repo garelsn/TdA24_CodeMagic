@@ -95,36 +95,7 @@ router.post("/activity", (req, res) => {
         return res.status(599).json({message: "Error message"});
     }
 });
-router.get('/admin', (req, res) => {
-const getLecturerTag =  `SELECT * FROM activity`;
-db.all(getLecturerTag, (err, row)=>{
 
-    row.forEach((element, index) => {
-        row[index].objectives= JSON.parse(element.objectives)
-        row[index].edLevel= JSON.parse(element.edLevel)
-        row[index].tools= JSON.parse(element.tools)
-        row[index].homePreparation= JSON.parse(element.homePreparation)
-        row[index].instructions= JSON.parse(element.instructions)
-        row[index].agenda= JSON.parse(element.agenda)
-        row[index].links= JSON.parse(element.links)
-        row[index].gallery= JSON.parse(element.gallery)
-        // try {
-        //     JSON.parse(element);
-        //     console.log(true); // Je to platný JSON
-        //   } catch (error) {
-        //     console.log(false); // Není to platný JSON
-        //   }
-    });
-    console.log(row[0].gallery[0].images)
-    res.render('admin', {activitys: row});
-})
-});
-
-router.delete('/logout', (req, res, next) => {
-  req.logOut(function(err) {
-    if (err) { return next(err); }
-    res.redirect('/login');
-  });
 })
 
 module.exports = router;
