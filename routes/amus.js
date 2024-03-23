@@ -5,6 +5,14 @@ const bcrypt = require('bcrypt');
 const { v4: uuidv4 } = require('uuid');
 const sqlite3 = require('sqlite3').verbose();
 const db = new sqlite3.Database("./data/db2.sqlite");
+const OpenAI = require("openai");
+const openai = new OpenAI({
+    apiKey: process.env.OPENAI_API_KEY
+
+  })
+
+  
+
 
 // Vytvoření tabulky activity
 db.run(`CREATE TABLE IF NOT EXISTS activity (
@@ -54,7 +62,52 @@ router.get('/login', checkNotAuthenticated, (req, res) => {
     res.render('login');
 });
 router.get('/', (req, res) => {
-    res.render('amos');
+    console.log(req.body)
+    console.log(req.query.search)
+    if(req.query.search!==undefined){
+        async function main(d) {
+            const completion = await openai.chat.completions.create({
+              messages: [{ role: "system", content: d }],
+              model: "gpt-3.5-turbo",
+            });
+        
+            console.log(completion.choices[0]);
+            console.log(completion.choices[0].message.content.split(","))
+            const keywords = completion.choices[0].message.content.split(",");
+    
+        const query = `SELECT * FROM activity WHERE ${keywords.map(keyword => `description LIKE '%${keyword}%'`).join(' OR ')}`;
+    
+        db.all(query, [], (err, rows) => {
+            if (err) {
+              console.error(err.message);
+              return;
+            }
+            // Zpracujte výsledky dotazu
+            rows.forEach((row) => {
+              console.log(row);
+            });
+            res.render('amos');
+          });
+        
+          }
+        description= req.query.search+ " potřebuji pouze klíčová slova bez ničeho jiného poze ty kličová slova, co nejvíc možností"
+        main(description)
+    }
+    else{
+        const query = `SELECT * FROM activity`;
+        db.all(query, [], (err, rows) => {
+            if (err) {
+              console.error(err.message);
+              return;
+            }
+            // Zpracujte výsledky dotazu
+            rows.forEach((row) => {
+              console.log(row);
+            });
+            res.render('amos');
+          });
+    }
+
 });
 
 router.post('/login', checkNotAuthenticated, passport.authenticate('local', {
@@ -129,5 +182,9 @@ router.delete('/logout', (req, res, next) => {
     res.redirect('/login');
   });
 })
+
+
+
+
 
 module.exports = router;
