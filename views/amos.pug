@@ -32,8 +32,7 @@ block content
                                     p(class="text-black font-bold ml-4") Přidat aktivitu
             
         section(class="w-full sm:mt-10 text-left sm:col-span-2 mt-20")
-            h1(class="text-2xl text-center sm:text-right sm:mr-24 ") Vyhledej si vysněnou aktivitu
-            form(class="max-w-xl mx-auto" method="GET" action="/")   
+
                 label(for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white") Vyhledat
                 div(class="relative")
                     div(class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none")
@@ -43,7 +42,34 @@ block content
                     input(type="submit", value="Vyhledat" class="text-white absolute end-2.5 bottom-2.5 font-medium rounded-lg text-sm px-4 py-2 bg-[#74C7D3]")
 
             div(class="sm:mt-10 mt-5")
-                h1(class="text-5xl text-center sm:text-left") Seznam aktivit
+                h1(class="text-5xl text-center sm:text-left text-white") Seznam aktivit
+            each value in activitys
+                div(class=" mt-6 float-left bg-white w-full p-5 sm:w-11/12 list-none border-b-4 border-[#979897] rounded mb-16")
+                    div(class="grid grid-cols-2")
+                        div(class="w-full mt-5")
+                            p(class="font-bold") Název:
+                                p(class="ml-[15%] text-2xl")= value.activityName
+                        div(class="w-full")
+                            div(class="grid grid-cols-2")
+                                div(class="w-full my-auto")
+                                    each v in value.agenda
+                                        img(src="../../../img/clock_icon.png", alt="Hodiny" class="w-1/4 ml-5 mt-4")
+                                        p(class="mt-2")=`${v.duration} minut`
+                                div(class="w-full")
+                                    each v in value.edLevel
+                                                if v === "primarySchool" || v === "Školka"
+                                                    img(src="../../../img/children_icon.png", alt="Děti ve školce" class="w-1/4 mt-4")
+                                                    li(class="mt-2")=v
+                                                else if v === "secondarySchool" || v === "Základní škola"
+                                                    img(src="../../../img/children2_icon.png", alt="Děti na základní škole" class="w-1/4 mt-4")
+                                                    li(class="mt-2")=v
+                                                else if v === "highSchool" || v === "Střední škola"
+                                                    img(src="../../../img/children3_icon.png", alt="Děti na střední škole" class="w-1/4 mt-4")
+                                                    li(class="mt-2")=v
+                            
+                    p(class="font-bold mt-3") Popisek: 
+                        p(class="mt-2")= value.description
+                    
 
         section(class="w-full mx-auto mt-14 lg:grid-cols-1 lg:gap-1 lg:flex lg:flex-col lg:m-0 lg:p-5 border-l-4 border-l-white hidden sm:visible")  
             a(class="mx-auto mt-[10%]" href="/login")

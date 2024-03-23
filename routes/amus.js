@@ -62,51 +62,6 @@ router.get('/login', checkNotAuthenticated, (req, res) => {
     res.render('login');
 });
 router.get('/', (req, res) => {
-    console.log(req.body)
-    console.log(req.query.search)
-    if(req.query.search!==undefined){
-        async function main(d) {
-            const completion = await openai.chat.completions.create({
-              messages: [{ role: "system", content: d }],
-              model: "gpt-3.5-turbo",
-            });
-        
-            console.log(completion.choices[0]);
-            console.log(completion.choices[0].message.content.split(","))
-            const keywords = completion.choices[0].message.content.split(",");
-    
-        const query = `SELECT * FROM activity WHERE ${keywords.map(keyword => `description LIKE '%${keyword}%'`).join(' OR ')}`;
-    
-        db.all(query, [], (err, rows) => {
-            if (err) {
-              console.error(err.message);
-              return;
-            }
-            // Zpracujte výsledky dotazu
-            rows.forEach((row) => {
-              console.log(row);
-            });
-            res.render('amos');
-          });
-        
-          }
-        description= req.query.search+ " potřebuji pouze klíčová slova bez ničeho jiného poze ty kličová slova, co nejvíc možností"
-        main(description)
-    }
-    else{
-        const query = `SELECT * FROM activity`;
-        db.all(query, [], (err, rows) => {
-            if (err) {
-              console.error(err.message);
-              return;
-            }
-            // Zpracujte výsledky dotazu
-            rows.forEach((row) => {
-              console.log(row);
-            });
-            res.render('amos');
-          });
-    }
 
 });
 
