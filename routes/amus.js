@@ -5,11 +5,11 @@ const bcrypt = require('bcrypt');
 const { v4: uuidv4 } = require('uuid');
 const sqlite3 = require('sqlite3').verbose();
 const db = new sqlite3.Database("./data/db2.sqlite");
-const OpenAI = require("openai");
-const openai = new OpenAI({
-    apiKey: process.env.OPENAI_API_KEY
+// const OpenAI = require("openai");
+// const openai = new OpenAI({
+//     apiKey: ""
 
-  })
+//   })
 
   
 
@@ -62,7 +62,7 @@ router.get('/login', checkNotAuthenticated, (req, res) => {
     res.render('login');
 });
 router.get('/', (req, res) => {
-
+    res.render('amos');
 });
 
 router.get('/addActivity', checkNotAuthenticated, (req, res) => {

@@ -968,10 +968,6 @@ video {
   margin-top: 2rem;
 }
 
-.mt-\[10\%\] {
-  margin-top: 10%;
-}
-
 .mt-\[15\%\] {
   margin-top: 15%;
 }
@@ -982,6 +978,10 @@ video {
 
 .mt-\[5vh\] {
   margin-top: 5vh;
+}
+
+.mt-\[10\%\] {
+  margin-top: 10%;
 }
 
 .box-border {
@@ -1254,10 +1254,6 @@ video {
 
 .max-w-screen-xl {
   max-width: 1280px;
-}
-
-.max-w-xl {
-  max-width: 36rem;
 }
 
 .flex-none {
@@ -2012,10 +2008,6 @@ video {
 
   .sm\:p-3 {
     padding: 0.75rem;
-  }
-
-  .sm\:text-right {
-    text-align: right;
   }
 
   .sm\:text-lg {
