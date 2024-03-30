@@ -39,7 +39,10 @@ const adminPassword = "tda";
 const admin = {
     name: adminName,
     password: adminPassword
-};
+};  
+
+
+const test = "d"
 
 // Hashování hesla pomocí bcrypt
 bcrypt.hash(adminPassword, 10, (err, hashedPassword) => {
